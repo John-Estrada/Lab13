@@ -89,4 +89,10 @@ public class CustomerRestForm {
 
     }
 
+    @GET
+    @Path("/teapot")
+    public Response getTeapot() {
+        return Response.status(419).entity("Test entity").build();
+    }
+
 }

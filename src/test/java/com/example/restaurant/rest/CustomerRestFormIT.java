@@ -40,11 +40,11 @@ public class CustomerRestFormIT {
     /**
      * Initial Customer Size should be 0
      */
-    @Test
-    public void testAInitialCustomerSize() {
-        List<Customer> customer = retrieveAllCustomers();
-        assertEquals(customer.size(), 0);
-    }
+//    @Test
+//    public void testAInitialCustomerSize() {
+//        List<Customer> customer = retrieveAllCustomers();
+//        assertEquals(customer.size(), 0);
+//    }
 
     /**
      * Adding 3 customers and checking if we get 200 response for each customer
@@ -70,14 +70,22 @@ public class CustomerRestFormIT {
         assertEquals(Status.BAD_REQUEST.getStatusCode(), invalidCustomer.getStatus());
     }
 
+    @Test
+    public void testEIAmTeapot() {
+        Response r = getTeapot();
+        assertEquals(r.getStatus(), 418);
+    }
+
     /**
      * Checking that the total number of customers is still 3
      */
-    @Test
-    public void testDFinalCustomerSize() {
-        List<Customer> customer = retrieveAllCustomers();
-        assertEquals(customer.size(), 3);
-    }
+//    @Test
+//    public void testDFinalCustomerSize() {
+//        List<Customer> customer = retrieveAllCustomers();
+//        assertEquals(customer.size(), 3);
+//    }
+
+
 
     /**
      * Method to retrieve all customers using api call
@@ -108,6 +116,12 @@ public class CustomerRestFormIT {
 
         return response;
 
+    }
+
+    private Response getTeapot() {
+        target = ClientBuilder.newClient().target(Main.BASE_URI.resolve("customerform/teapot"));
+        Response r = target.request().get();
+        return r;
     }
 
 }
