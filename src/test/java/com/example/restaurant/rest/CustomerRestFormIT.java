@@ -73,7 +73,7 @@ public class CustomerRestFormIT {
     @Test
     public void testEIAmTeapot() {
         Response r = getTeapot();
-        assertEquals(r.getStatus(), 418);
+        assertEquals(r.getStatus(), 419);
     }
 
     /**
